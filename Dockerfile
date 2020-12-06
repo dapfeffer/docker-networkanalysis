@@ -17,10 +17,12 @@ WORKDIR /data
 RUN rm -rvf /data/zeek*
 RUN chsh -s /bin/zsh
 
+RUN apt install -y rustc cargo
+
 ARG SURICATA_VER=6.0.1
 ADD https://www.openinfosecfoundation.org/download/suricata-${SURICATA_VER}.tar.gz /data
 RUN tar xzf suricata-${SURICATA_VER}.tar.gz
-WORKDIR /data/${SURICATA_VER}
+WORKDIR /data/suricata-${SURICATA_VER}
 RUN ./configure && make && make install-conf
 
 #RUN apt install -y software-properties-common && add-apt-repository ppa:oisf/suricata-stable && apt update && apt install -y suricata
