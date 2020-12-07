@@ -21,9 +21,15 @@ RUN apt install -y rustc cargo
 
 ARG SURICATA_VER=6.0.1
 ADD https://www.openinfosecfoundation.org/download/suricata-${SURICATA_VER}.tar.gz /data
-RUN tar xzf suricata-${SURICATA_VER}.tar.gz
+RUN tar xzvf suricata-${SURICATA_VER}.tar.gz
 WORKDIR /data/suricata-${SURICATA_VER}
-RUN ./configure && make && make install-conf
+RUN ./configure && make && make install && make install-conf && ldconfig
+
+WORKDIR /data
+ADD suricata.yaml /data/
+#ADD https://rules.emergingthreats.net/open/suricata-5.0/emerging.rules.tar.gz /data/
+#RUN tar xzvf emerging.rules.tar.gz
+ADD https://rules.emergingthreats.net/open/suricata-5.0/emerging-all.rules /data/
 
 #RUN apt install -y software-properties-common && add-apt-repository ppa:oisf/suricata-stable && apt update && apt install -y suricata
 
