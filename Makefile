@@ -1,6 +1,7 @@
 #Dockerfile vars
 ubuntuver=20.04
 zeekver=3.2.2
+suricataver=6.0.1
 
 #vars
 IMAGENAME=networkanalysis
@@ -13,9 +14,6 @@ IMAGEFULLNAME=${REPO}/${IMAGENAME}:${VERSION}
 help:
 	    @echo "Makefile arguments:"
 	    @echo ""
-	    @echo "alpver - Alpine Version"
-	    @echo "kctlver - kubectl version"
-	    @echo ""
 	    @echo "Makefile commands:"
 	    @echo "build"
 	    @echo "push"
@@ -24,7 +22,7 @@ help:
 .DEFAULT_GOAL := all
 
 build:
-	    @docker build --pull --build-arg UBUNTU_VER=${ubuntuver} --build-arg ZEEK_VER=${zeekver} -t ${IMAGEFULLNAME} .
+	    @docker build --pull --build-arg UBUNTU_VER=${ubuntuver} --build-arg ZEEK_VER=${zeekver} --build-arg SURICATA_VER=${suricataver} -t ${IMAGEFULLNAME} .
 
 push:
 	    @docker push ${IMAGEFULLNAME}
