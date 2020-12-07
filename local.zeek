@@ -106,6 +106,10 @@ redef digest_salt = "Please change this value.SomethingSuperSpecialAndMagic123!"
 @load policy/protocols/conn/mac-logging
 
 # extract all files
-@load policy/frameworks/files/extract-all-files.zeek
+@load policy/frameworks/files/extract-all-files
 
+#detect protocols on non-standard ports
+@load policy/frameworks/dpd/detect-protocols
 
+# windows version detection based on cryptoapi
+@load policy/frameworks/software/windows-version-detection
