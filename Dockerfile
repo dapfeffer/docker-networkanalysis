@@ -31,5 +31,9 @@ ADD suricata.yaml /data/
 #RUN tar xzvf emerging.rules.tar.gz
 ADD https://rules.emergingthreats.net/open/suricata-5.0/emerging-all.rules /data/
 
+# activate all the rules
+#RUN sed 's/^#alert/alert/' emerging-all.rules > emerging-all-all.rules
+RUN sed 's/^#alert/alert/' emerging-all.rules | sed 's/.*ET DELETED .*//' | sed 's/.*GPL DELETED .*//' > emerging-all-all.rules
+
 #RUN apt install -y software-properties-common && add-apt-repository ppa:oisf/suricata-stable && apt update && apt install -y suricata
 
