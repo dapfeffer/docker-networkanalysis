@@ -27,4 +27,8 @@ build:
 push:
 	    @docker push ${IMAGEFULLNAME}
 
+pushlocal:
+	    @docker tag ${IMAGEFULLNAME} localhost:6000/${IMAGEFULLNAME}
+	    @docker push localhost:6000/${IMAGEFULLNAME}
+
 all: build push
