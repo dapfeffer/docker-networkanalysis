@@ -5,7 +5,7 @@ suricataver=6.0.1
 
 #vars
 IMAGENAME=networkanalysis
-VERSION=0.1.0
+VERSION=0.1.1
 REPO=dapfeffer
 IMAGEFULLNAME=${REPO}/${IMAGENAME}:${VERSION}
 
