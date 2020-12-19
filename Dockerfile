@@ -6,7 +6,7 @@ RUN echo "Etc/UTC" > /etc/timezone
 RUN apt update && apt -y install tzdata && dpkg-reconfigure --frontend noninteractive tzdata && apt -y upgrade && apt -y install zsh git cmake make gcc g++ flex bison libpcap-dev libssl-dev python-dev swig zlib1g-dev libmaxminddb-dev fd-find libpcre3 libpcre3-dbg libpcre3-dev build-essential autoconf automake libtool libpcap-dev libnet1-dev libyaml-0-2 libyaml-dev zlib1g zlib1g-dev libcap-ng-dev libcap-ng0 libmagic-dev libjansson-dev libjansson4 pkg-config libgoogle-perftools-dev google-perftools libjemalloc-dev libkrb5-dev rustc cargo
 RUN DEBIAN_FRONTEND=noninteractive apt install -y tcpdump tshark
 WORKDIR /data/src
-ARG ZEEK_VER=3.2.2
+ARG ZEEK_VER=3.2.3
 ADD https://download.zeek.org/zeek-${ZEEK_VER}.tar.gz /data/src/
 RUN tar xzvf zeek-${ZEEK_VER}.tar.gz
 WORKDIR /data/src/zeek-${ZEEK_VER}
@@ -39,3 +39,4 @@ RUN tar xzvf community-rules.tar.gz && cat community-rules/community.rules >> al
 
 #RUN apt install -y software-properties-common && add-apt-repository ppa:oisf/suricata-stable && apt update && apt install -y suricata
 
+CMD /bin/zsh

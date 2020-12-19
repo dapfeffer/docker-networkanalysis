@@ -1,6 +1,6 @@
 #Dockerfile vars
 ubuntuver=20.04
-zeekver=3.2.2
+zeekver=3.2.3
 suricataver=6.0.1
 
 #vars
