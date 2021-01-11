@@ -20,7 +20,7 @@ help:
 	    @echo "push"
 	    @echo "all"
 
-.DEFAULT_GOAL := all
+.DEFAULT_GOAL := build
 
 build:
 	    @docker build --pull --build-arg UBUNTU_VER=${ubuntuver} --build-arg ZEEK_VER=${zeekver} --build-arg SURICATA_VER=${suricataver} -t ${IMAGEFULLNAME} .
