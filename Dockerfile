@@ -37,6 +37,10 @@ ADD https://www.snort.org/downloads/community/community-rules.tar.gz /data/
 RUN sed 's/^#alert/alert/' emerging-all.rules | sed 's/.*ET DELETED .*//' | sed 's/.*GPL DELETED .*//' > all.rules
 RUN tar xzvf community-rules.tar.gz && cat community-rules/community.rules >> all.rules
 
+# add custom rules
+ADD suricata-custom.rules /data/
+RUN cat /data/suricata-custom.rules >> all.rules
+
 #RUN apt install -y software-properties-common && add-apt-repository ppa:oisf/suricata-stable && apt update && apt install -y suricata
 
 CMD /bin/zsh
