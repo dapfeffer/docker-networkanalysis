@@ -25,6 +25,7 @@ help:
 .DEFAULT_GOAL := build
 
 build:
+	    @touch suricata-custom.rules
 	    @docker build --pull --build-arg UBUNTU_VER=${ubuntuver} --build-arg ZEEK_VER=${zeekver} --build-arg SURICATA_VER=${suricataver} -t ${IMAGEFULLNAME} .
 	    @docker tag ${IMAGEFULLNAME} ${IMAGELATEST}
 push:
