@@ -1,7 +1,7 @@
 #Dockerfile vars
 ubuntuver=20.04
-zeekver=3.2.3
-suricataver=6.0.1
+zeekver=4.0.0
+suricataver=6.0.2
 
 #vars
 IMAGENAME=networkanalysis
