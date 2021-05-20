@@ -7,7 +7,7 @@ RUN apt update && apt -y install tzdata && dpkg-reconfigure --frontend nonintera
 RUN DEBIAN_FRONTEND=noninteractive apt install -y tcpdump tshark
 RUN apt clean
 WORKDIR /data/src
-ARG ZEEK_VER=4.0.0
+ARG ZEEK_VER=4.0.2
 ADD https://download.zeek.org/zeek-${ZEEK_VER}.tar.gz /data/src/
 RUN tar xzvf zeek-${ZEEK_VER}.tar.gz
 WORKDIR /data/src/zeek-${ZEEK_VER}
