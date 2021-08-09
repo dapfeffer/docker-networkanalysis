@@ -7,7 +7,7 @@ RUN apt update && apt -y install tzdata && dpkg-reconfigure --frontend nonintera
 RUN DEBIAN_FRONTEND=noninteractive apt install -y tcpdump tshark
 RUN apt clean
 WORKDIR /data/src
-ARG ZEEK_VER=4.0.2
+ARG ZEEK_VER=4.0.3
 ADD https://download.zeek.org/zeek-${ZEEK_VER}.tar.gz /data/src/
 RUN tar xzvf zeek-${ZEEK_VER}.tar.gz
 WORKDIR /data/src/zeek-${ZEEK_VER}
@@ -20,7 +20,7 @@ ENV PATH "$PATH:/usr/local/zeek/bin"
 WORKDIR /data/src
 RUN chsh -s /bin/zsh
 
-ARG SURICATA_VER=6.0.2
+ARG SURICATA_VER=6.0.3
 ADD https://www.openinfosecfoundation.org/download/suricata-${SURICATA_VER}.tar.gz /data/src/
 RUN tar xzvf suricata-${SURICATA_VER}.tar.gz
 WORKDIR /data/src/suricata-${SURICATA_VER}
