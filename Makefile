@@ -5,7 +5,7 @@ suricataver=6.0.3
 
 #vars
 IMAGENAME=networkanalysis
-TIMESTAMP:=$(shell date +%Y%m%d%H%M%S)
+TIMESTAMP:=$(shell date +%Y%m%d)
 #VERSION=0.1.1
 VERSION=${TIMESTAMP}
 REPO=dapfeffer
