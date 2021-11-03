@@ -1,0 +1,9 @@
+ARG UBUNTU_VER=20.04
+
+FROM ubuntu:$UBUNTU_VER
+
+RUN echo "Etc/UTC" > /etc/timezone
+RUN apt update && apt -y install tzdata && dpkg-reconfigure --frontend noninteractive tzdata && apt -y upgrade && apt -y install zsh git cmake make gcc g++ flex bison libpcap-dev libssl-dev python3-dev python-dev swig zlib1g-dev libmaxminddb-dev fd-find libpcre3 libpcre3-dbg libpcre3-dev build-essential autoconf automake libtool libpcap-dev libnet1-dev libyaml-0-2 libyaml-dev zlib1g zlib1g-dev libcap-ng-dev libcap-ng0 libmagic-dev libjansson-dev libjansson4 pkg-config libgoogle-perftools-dev google-perftools libjemalloc-dev libkrb5-dev rustc cargo calamaris p7zip-full vim jq
+RUN DEBIAN_FRONTEND=noninteractive apt install -y tcpdump tshark
+RUN apt clean
+WORKDIR /data/src

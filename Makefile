@@ -12,6 +12,7 @@ VERSION=$(shell git describe --always)
 REPO=dapfeffer
 IMAGEFULLNAME=${REPO}/${IMAGENAME}:${VERSION}
 IMAGELATEST=${REPO}/${IMAGENAME}:latest
+IMAGEBASE=${REPO}/${IMAGENAME}:base
 
 .PHONY: help build push all
 
@@ -27,8 +28,11 @@ help:
 
 build:
 	    @touch suricata-custom.rules
-	    @docker build --pull --build-arg UBUNTU_VER=${ubuntuver} --build-arg ZEEK_VER=${zeekver} --build-arg SURICATA_VER=${suricataver} -t ${IMAGEFULLNAME} .
+	    @docker build --pull --build-arg UBUNTU_VER=${ubuntuver} --build-arg ZEEK_VER=${zeekver} --build-arg SURICATA_VER=${suricataver} -t ${IMAGEFULLNAME} -f Dockerfile .
 	    @docker tag ${IMAGEFULLNAME} ${IMAGELATEST}
+base:
+	    @docker build --pull -t ${IMAGEBASE} -f Dockerfile.base .
+	    @docker push ${IMAGEBASE}
 push:
 	    @docker push ${IMAGEFULLNAME}
 	    @docker push ${IMAGELATEST}
