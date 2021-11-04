@@ -1,26 +1,4 @@
-ARG UBUNTU_VER=20.04
-
 FROM dapfeffer/networkanalysis:base
-
-WORKDIR /data/src
-ARG ZEEK_VER=4.0.3
-ADD https://download.zeek.org/zeek-${ZEEK_VER}.tar.gz /data/src/
-RUN tar xzvf zeek-${ZEEK_VER}.tar.gz
-WORKDIR /data/src/zeek-${ZEEK_VER}
-#ADD https://github.com/zeek/zeek/archive/release.tar.gz /data/src/
-#RUN tar xzvf release.tar.gz
-#WORKDIR /data/src/zeek-release
-RUN ./configure; make; make install
-COPY local.zeek /usr/local/zeek/share/zeek/site/local.zeek
-ENV PATH "$PATH:/usr/local/zeek/bin"
-WORKDIR /data/src
-RUN chsh -s /bin/zsh
-
-ARG SURICATA_VER=6.0.3
-ADD https://www.openinfosecfoundation.org/download/suricata-${SURICATA_VER}.tar.gz /data/src/
-RUN tar xzvf suricata-${SURICATA_VER}.tar.gz
-WORKDIR /data/src/suricata-${SURICATA_VER}
-RUN ./configure && make && make install && make install-conf && ldconfig
 
 WORKDIR /data
 ADD suricata.yaml /data/
