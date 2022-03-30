@@ -28,10 +28,10 @@ help:
 
 build:
 	    @touch suricata-custom.rules
-	    @docker build --pull --build-arg UBUNTU_VER=${ubuntuver} --build-arg ZEEK_VER=${zeekver} --build-arg SURICATA_VER=${suricataver} -t ${IMAGEFULLNAME} -f Dockerfile .
+	    @docker build --pull -t ${IMAGEFULLNAME} -f Dockerfile .
 	    @docker tag ${IMAGEFULLNAME} ${IMAGELATEST}
 base:
-	    @docker build --pull -t ${IMAGEBASE} -f Dockerfile.base .
+	    @docker build --pull --build-arg UBUNTU_VER=${ubuntuver} --build-arg ZEEK_VER=${zeekver} --build-arg SURICATA_VER=${suricataver} -t ${IMAGEBASE} -f Dockerfile.base .
 	    @docker push ${IMAGEBASE}
 push:
 	    @docker push ${IMAGEFULLNAME}
