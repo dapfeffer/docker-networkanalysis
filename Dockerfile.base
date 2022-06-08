@@ -9,7 +9,7 @@ RUN apt clean
 WORKDIR /data/src
 
 WORKDIR /data/src
-ARG ZEEK_VER=4.0.3
+ARG ZEEK_VER=4.2.2
 ADD https://download.zeek.org/zeek-${ZEEK_VER}.tar.gz /data/src/
 RUN tar xzvf zeek-${ZEEK_VER}.tar.gz
 WORKDIR /data/src/zeek-${ZEEK_VER}
