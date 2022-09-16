@@ -28,6 +28,16 @@ help:
 
 build:
 	    @touch suricata-custom.rules
+		@touch crowdstrike_intel_snort.rules
+		@wget https://rules.emergingthreats.net/open/suricata-5.0/emerging-all.rules.tar.gz
+		@wget https://www.snort.org/downloads/community/community-rules.tar.gz
+		@tar xzvf emerging-all.rules.tar.gz
+		@tar xzvf community-rules.tar.gz
+		@sed 's/^#alert/alert/' emerging-all.rules | sed 's/.*ET DELETED .*//' | sed 's/.*GPL DELETED .*//' > all.rules
+		@cat community-rules/community.rules >> all.rules
+		@cat suricata-custom.rules >> all.rules
+		@cat crowdstrike_intel_snort.rules >> all.rules
+		@gpg -c all.rules
 	    @docker build --pull -t ${IMAGEFULLNAME} -f Dockerfile .
 	    @docker tag ${IMAGEFULLNAME} ${IMAGELATEST}
 base:

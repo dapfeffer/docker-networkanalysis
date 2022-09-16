@@ -55,7 +55,7 @@ vars:
 # The default logging directory.  Any log or output file will be
 # placed here if it's not specified with a full path name. This can be
 # overridden with the -l command line parameter.
-default-log-dir: /data/output
+default-log-dir: /output
 
 # Global stats configuration
 stats:
@@ -1859,7 +1859,7 @@ napatech:
 default-rule-path: /usr/local/etc/suricata/rules
 
 rule-files:
-  - suricata.rules
+  - all.rules
 
 ##
 ## Auxiliary configuration files.
